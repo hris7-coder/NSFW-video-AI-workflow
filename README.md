@@ -1,5 +1,6 @@
 # 🔥 NSFW Workflows Collection | 无审查 AI 工作流终极合集
 
+[简体中文](https://github.com/hris7-coder/NSFW-video-AI-workflow/blob/main/README.md)|[繁体中文](https://github.com/hris7-coder/NSFW-video-AI-workflow/blob/main/README_TW.md)|[ENGLISH](https://github.com/hris7-coder/NSFW-video-AI-workflow/blob/main/README_EN.md)|[日本語](https://github.com/hris7-coder/NSFW-video-AI-workflow/blob/main/README_JP.md)
 > **一站式收集目前最强的 NSFW / Uncensored 工作流**  
 > 支持 **MiniMax、H3、Flux、SDXL、Pony、CHROMA、Illustrious** 等顶级模型  
 > 本地 ComfyUI / Forge 一键可用 · 持续更新
