@@ -1,0 +1,794 @@
+{
+  "5318": {
+    "inputs": {
+      "fps": [
+        "5319",
+        0
+      ],
+      "filename_prefix": "Sulphur2-FP8-I2V-三采样-RAZRAI.com",
+      "crf": 24,
+      "preset": "medium",
+      "codec": "h264",
+      "compression_profile": "youtube",
+      "video-preview": "",
+      "images": [
+        "5353",
+        0
+      ],
+      "audio": [
+        "5354",
+        0
+      ]
+    },
+    "class_type": "SaveMP4Safe",
+    "_meta": {
+      "title": "Save MP4 Safe | RAZRAI.com - AI Video Generation"
+    }
+  },
+  "5319": {
+    "inputs": {
+      "value": 25
+    },
+    "class_type": "PrimitiveFloat",
+    "_meta": {
+      "title": "fps"
+    }
+  },
+  "5320": {
+    "inputs": {
+      "value": false
+    },
+    "class_type": "PrimitiveBoolean",
+    "_meta": {
+      "title": "bypass_i2v"
+    }
+  },
+  "5321": {
+    "inputs": {
+      "text": "subtitle，pc game, console game, video game, cartoon, childish, ugly，Low resolution, blurriness, noise, distortion, warping, twisting, extra limbs, deformed fingers, facial distortion, strange expressions, uneven skin tone, chaotic lighting, fragmented image, scene transitions, hard cuts, abrupt scene changes, stuttering animation, clipping, overlapping, text watermarks, logos, ugly, rough, poor rendering, dirty colors, cluttered backgrounds, extra characters, extra objects, motion blur, flickering, overexposure, underexposure, inconsistent art style.subtitle，pc game, console game, video game, cartoon, childish, ugly, subtitles, captions, on-screen text, written text, letters, words, Chinese characters, English text, random text, garbled text, watermark, logo, title overlay, lower third text, UI text, interface text,camera zooming out, low resolution, blurry, grainy, pixelated, wide shot, distant view, shallow focus, motion blur, low detail, flat lighting, dark scene, noisy image, poor texture, soft edges, muted colors, overexposed, underexposed, static, silent, no movement, blurry, low quality, still frame, frames, watermark, overlay, titles, has subtitles, Deformed, scene cut, scene transition, no movement, glitching, low resolution, extra hands appearing, extra limbs appearing, warping, extra body parts",
+      "clip": [
+        "5359",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "5322": {
+    "inputs": {
+      "frame_rate": [
+        "5319",
+        0
+      ],
+      "positive": [
+        "5365",
+        0
+      ],
+      "negative": [
+        "5321",
+        0
+      ]
+    },
+    "class_type": "LTXVConditioning",
+    "_meta": {
+      "title": "LTXV条件"
+    }
+  },
+  "5323": {
+    "inputs": {
+      "value": 5
+    },
+    "class_type": "PrimitiveInt",
+    "_meta": {
+      "title": "number of frames"
+    }
+  },
+  "5324": {
+    "inputs": {
+      "frames_number": [
+        "5506",
+        0
+      ],
+      "frame_rate": [
+        "5326",
+        0
+      ],
+      "batch_size": 1,
+      "audio_vae": [
+        "5358",
+        0
+      ]
+    },
+    "class_type": "LTXVEmptyLatentAudio",
+    "_meta": {
+      "title": "LTXV 空音频潜空间"
+    }
+  },
+  "5325": {
+    "inputs": {
+      "img_compression": 18,
+      "image": [
+        "5362",
+        0
+      ]
+    },
+    "class_type": "LTXVPreprocess",
+    "_meta": {
+      "title": "LTXV预处理"
+    }
+  },
+  "5326": {
+    "inputs": {
+      "a": [
+        "5319",
+        0
+      ]
+    },
+    "class_type": "CM_FloatToInt",
+    "_meta": {
+      "title": "FloatToInt"
+    }
+  },
+  "5327": {
+    "inputs": {
+      "strength": 0.7,
+      "bypass": [
+        "5320",
+        0
+      ],
+      "vae": [
+        "5356",
+        2
+      ],
+      "image": [
+        "5325",
+        0
+      ],
+      "latent": [
+        "5361",
+        0
+      ]
+    },
+    "class_type": "LTXVImgToVideoConditionOnly",
+    "_meta": {
+      "title": "🅛🅣🅧 LTXV Img To Video Condition Only"
+    }
+  },
+  "5328": {
+    "inputs": {
+      "video_latent": [
+        "5327",
+        0
+      ],
+      "audio_latent": [
+        "5324",
+        0
+      ]
+    },
+    "class_type": "LTXVConcatAVLatent",
+    "_meta": {
+      "title": "LTXVConcatAVLatent"
+    }
+  },
+  "5329": {
+    "inputs": {
+      "cfg": 1,
+      "model": [
+        "5357",
+        0
+      ],
+      "positive": [
+        "5322",
+        0
+      ],
+      "negative": [
+        "5322",
+        1
+      ]
+    },
+    "class_type": "CFGGuider",
+    "_meta": {
+      "title": "CFG引导器"
+    }
+  },
+  "5330": {
+    "inputs": {
+      "sampler_name": "euler_ancestral_cfg_pp"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "K采样器选择"
+    }
+  },
+  "5331": {
+    "inputs": {
+      "sigmas": "1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375,0.881203,0.863321,0.841251,0.820089,0.655, 0.381875, 0.0"
+    },
+    "class_type": "ManualSigmas",
+    "_meta": {
+      "title": "自定义Sigmas"
+    }
+  },
+  "5332": {
+    "inputs": {
+      "av_latent": [
+        "5333",
+        0
+      ]
+    },
+    "class_type": "LTXVSeparateAVLatent",
+    "_meta": {
+      "title": "LTXV分离音视频潜空间"
+    }
+  },
+  "5333": {
+    "inputs": {
+      "noise": [
+        "5334",
+        0
+      ],
+      "guider": [
+        "5329",
+        0
+      ],
+      "sampler": [
+        "5330",
+        0
+      ],
+      "sigmas": [
+        "5331",
+        0
+      ],
+      "latent_image": [
+        "5328",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "自定义采样器（高级）"
+    }
+  },
+  "5334": {
+    "inputs": {
+      "noise_seed": 369863749325610
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "随机噪波"
+    }
+  },
+  "5335": {
+    "inputs": {
+      "sampler_name": "euler_cfg_pp"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "K采样器选择"
+    }
+  },
+  "5336": {
+    "inputs": {
+      "sigmas": "0.85, 0.7250, 0.4219, 0.0"
+    },
+    "class_type": "ManualSigmas",
+    "_meta": {
+      "title": "自定义Sigmas"
+    }
+  },
+  "5337": {
+    "inputs": {
+      "video_latent": [
+        "5340",
+        0
+      ],
+      "audio_latent": [
+        "5332",
+        1
+      ]
+    },
+    "class_type": "LTXVConcatAVLatent",
+    "_meta": {
+      "title": "LTXVConcatAVLatent"
+    }
+  },
+  "5338": {
+    "inputs": {
+      "samples": [
+        "5332",
+        0
+      ],
+      "upscale_model": [
+        "5360",
+        0
+      ],
+      "vae": [
+        "5356",
+        2
+      ]
+    },
+    "class_type": "LTXVLatentUpsampler",
+    "_meta": {
+      "title": "LTXV潜空间上采样器"
+    }
+  },
+  "5339": {
+    "inputs": {
+      "noise_seed": 796798009282096
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "随机噪波"
+    }
+  },
+  "5340": {
+    "inputs": {
+      "strength": 1,
+      "bypass": [
+        "5320",
+        0
+      ],
+      "vae": [
+        "5356",
+        2
+      ],
+      "image": [
+        "5362",
+        0
+      ],
+      "latent": [
+        "5338",
+        0
+      ]
+    },
+    "class_type": "LTXVImgToVideoConditionOnly",
+    "_meta": {
+      "title": "🅛🅣🅧 LTXV Img To Video Condition Only"
+    }
+  },
+  "5341": {
+    "inputs": {
+      "av_latent": [
+        "5343",
+        0
+      ]
+    },
+    "class_type": "LTXVSeparateAVLatent",
+    "_meta": {
+      "title": "LTXV分离音视频潜空间"
+    }
+  },
+  "5342": {
+    "inputs": {
+      "cfg": 1,
+      "model": [
+        "5357",
+        0
+      ],
+      "positive": [
+        "5322",
+        0
+      ],
+      "negative": [
+        "5322",
+        1
+      ]
+    },
+    "class_type": "CFGGuider",
+    "_meta": {
+      "title": "CFG引导器"
+    }
+  },
+  "5343": {
+    "inputs": {
+      "noise": [
+        "5339",
+        0
+      ],
+      "guider": [
+        "5342",
+        0
+      ],
+      "sampler": [
+        "5335",
+        0
+      ],
+      "sigmas": [
+        "5336",
+        0
+      ],
+      "latent_image": [
+        "5337",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "自定义采样器（高级）"
+    }
+  },
+  "5344": {
+    "inputs": {
+      "sampler_name": "euler_cfg_pp"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "K采样器选择"
+    }
+  },
+  "5345": {
+    "inputs": {
+      "cfg": 1,
+      "model": [
+        "5357",
+        0
+      ],
+      "positive": [
+        "5322",
+        0
+      ],
+      "negative": [
+        "5322",
+        1
+      ]
+    },
+    "class_type": "CFGGuider",
+    "_meta": {
+      "title": "CFG引导器"
+    }
+  },
+  "5346": {
+    "inputs": {
+      "sigmas": "0.85, 0.7250, 0.4219, 0.0"
+    },
+    "class_type": "ManualSigmas",
+    "_meta": {
+      "title": "自定义Sigmas"
+    }
+  },
+  "5347": {
+    "inputs": {
+      "video_latent": [
+        "5348",
+        0
+      ],
+      "audio_latent": [
+        "5341",
+        1
+      ]
+    },
+    "class_type": "LTXVConcatAVLatent",
+    "_meta": {
+      "title": "LTXVConcatAVLatent"
+    }
+  },
+  "5348": {
+    "inputs": {
+      "strength": 1,
+      "bypass": [
+        "5320",
+        0
+      ],
+      "vae": [
+        "5356",
+        2
+      ],
+      "image": [
+        "5362",
+        0
+      ],
+      "latent": [
+        "5350",
+        0
+      ]
+    },
+    "class_type": "LTXVImgToVideoConditionOnly",
+    "_meta": {
+      "title": "🅛🅣🅧 LTXV Img To Video Condition Only"
+    }
+  },
+  "5349": {
+    "inputs": {
+      "noise_seed": 767064873783296
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "随机噪波"
+    }
+  },
+  "5350": {
+    "inputs": {
+      "samples": [
+        "5341",
+        0
+      ],
+      "upscale_model": [
+        "5360",
+        0
+      ],
+      "vae": [
+        "5356",
+        2
+      ]
+    },
+    "class_type": "LTXVLatentUpsampler",
+    "_meta": {
+      "title": "LTXV潜空间上采样器"
+    }
+  },
+  "5351": {
+    "inputs": {
+      "av_latent": [
+        "5352",
+        0
+      ]
+    },
+    "class_type": "LTXVSeparateAVLatent",
+    "_meta": {
+      "title": "LTXV分离音视频潜空间"
+    }
+  },
+  "5352": {
+    "inputs": {
+      "noise": [
+        "5349",
+        0
+      ],
+      "guider": [
+        "5345",
+        0
+      ],
+      "sampler": [
+        "5344",
+        0
+      ],
+      "sigmas": [
+        "5346",
+        0
+      ],
+      "latent_image": [
+        "5347",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "自定义采样器（高级）"
+    }
+  },
+  "5353": {
+    "inputs": {
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 512,
+      "temporal_overlap": 4,
+      "samples": [
+        "5351",
+        0
+      ],
+      "vae": [
+        "5356",
+        2
+      ]
+    },
+    "class_type": "VAEDecodeTiled",
+    "_meta": {
+      "title": "VAE解码（分块）"
+    }
+  },
+  "5354": {
+    "inputs": {
+      "samples": [
+        "5351",
+        1
+      ],
+      "audio_vae": [
+        "5358",
+        0
+      ]
+    },
+    "class_type": "LTXVAudioVAEDecode",
+    "_meta": {
+      "title": "LTXV音频VAE解码"
+    }
+  },
+  "5356": {
+    "inputs": {
+      "ckpt_name": "sulphur_dev_fp8mixed.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器（简易）"
+    }
+  },
+  "5357": {
+    "inputs": {
+      "lora_name": "ltx-2.3-22b-distilled-lora-1.1_fro90_ceil72_condsafe.safetensors",
+      "strength_model": 0.5,
+      "model": [
+        "5356",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "5358": {
+    "inputs": {
+      "ckpt_name": "sulphur_dev_fp8mixed.safetensors"
+    },
+    "class_type": "LTXVAudioVAELoader",
+    "_meta": {
+      "title": "LTXV音频VAE加载器"
+    }
+  },
+  "5359": {
+    "inputs": {
+      "text_encoder": "gemma_3_12B_it.safetensors",
+      "ckpt_name": "sulphur_dev_fp8mixed.safetensors",
+      "device": "default"
+    },
+    "class_type": "LTXAVTextEncoderLoader",
+    "_meta": {
+      "title": "LTXV音频文本编码器加载器"
+    }
+  },
+  "5360": {
+    "inputs": {
+      "model_name": "ltx-2.3-spatial-upscaler-x2-1.0.safetensors"
+    },
+    "class_type": "LatentUpscaleModelLoader",
+    "_meta": {
+      "title": "加载Latent放大模型"
+    }
+  },
+  "5361": {
+    "inputs": {
+      "width": [
+        "5363",
+        2
+      ],
+      "height": [
+        "5363",
+        3
+      ],
+      "length": [
+        "5506",
+        0
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLTXVLatentVideo",
+    "_meta": {
+      "title": "空Latent视频（LTXV）"
+    }
+  },
+  "5362": {
+    "inputs": {
+      "size": 1280,
+      "interpolation_mode": "bilinear",
+      "image": [
+        "5364",
+        0
+      ]
+    },
+    "class_type": "Image_Resize_longsize",
+    "_meta": {
+      "title": "Image_长边缩放"
+    }
+  },
+  "5363": {
+    "inputs": {
+      "TotalPixels": 0.15000000000000002,
+      "alignment": "64(sd/kontext/wan)",
+      "images": [
+        "5364",
+        0
+      ]
+    },
+    "class_type": "image_scale_pixel_v2",
+    "_meta": {
+      "title": "image scale pixel v2"
+    }
+  },
+  "5364": {
+    "inputs": {
+      "image": "z-image-jpg_01015_.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "5365": {
+    "inputs": {
+      "text": [
+        "5521",
+        0
+      ],
+      "clip": [
+        "5359",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "5506": {
+    "inputs": {
+      "value": "a*b+1",
+      "a": [
+        "5323",
+        0
+      ],
+      "b": [
+        "5319",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "🔧 Simple Math"
+    }
+  },
+  "5521": {
+    "inputs": {
+      "text": "在丛林做爱"
+    },
+    "class_type": "Text",
+    "_meta": {
+      "title": "𝙆 文本"
+    }
+  },
+  "5524": {
+    "inputs": {
+      "anything": [
+        "5333",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "清理显存占用"
+    }
+  },
+  "5526": {
+    "inputs": {
+      "anything": [
+        "5352",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "清理显存占用"
+    }
+  },
+  "5527": {
+    "inputs": {
+      "任意连接": [
+        "5343",
+        0
+      ]
+    },
+    "class_type": "WujiCleaner",
+    "_meta": {
+      "title": "WujiCleaner"
+    }
+  },
+  "5529": {
+    "inputs": {
+      "sigmas": "1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0"
+    },
+    "class_type": "ManualSigmas",
+    "_meta": {
+      "title": "自定义Sigmas"
+    }
+  }
+}

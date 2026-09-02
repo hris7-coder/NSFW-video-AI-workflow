@@ -1,0 +1,405 @@
+{
+  "6": {
+    "inputs": {
+      "text": "",
+      "clip": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Positive Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "blurry, low quality, deformed, flicker, jitter, ghosting, duplicated limbs, broken motion",
+      "clip": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Negative Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "58",
+        0
+      ],
+      "vae": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "37": {
+    "inputs": {
+      "unet_name": "wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "38": {
+    "inputs": {
+      "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "wan",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "加载CLIP"
+    }
+  },
+  "39": {
+    "inputs": {
+      "vae_name": "wan_2.1_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "54": {
+    "inputs": {
+      "shift": 5.000000000000001,
+      "model": [
+        "67",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "采样算法（SD3）"
+    }
+  },
+  "55": {
+    "inputs": {
+      "shift": 5.000000000000001,
+      "model": [
+        "68",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "采样算法（SD3）"
+    }
+  },
+  "56": {
+    "inputs": {
+      "unet_name": "wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "57": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": 361669534504217,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "start_at_step": 0,
+      "end_at_step": 2,
+      "return_with_leftover_noise": "enable",
+      "model": [
+        "54",
+        0
+      ],
+      "positive": [
+        "73",
+        0
+      ],
+      "negative": [
+        "73",
+        1
+      ],
+      "latent_image": [
+        "73",
+        2
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "K采样器（高级）"
+    }
+  },
+  "58": {
+    "inputs": {
+      "add_noise": "disable",
+      "noise_seed": 729977114419165,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "start_at_step": 2,
+      "end_at_step": 4,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "55",
+        0
+      ],
+      "positive": [
+        "73",
+        0
+      ],
+      "negative": [
+        "73",
+        1
+      ],
+      "latent_image": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "K采样器（高级）"
+    }
+  },
+  "60": {
+    "inputs": {
+      "fps": 16,
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "CreateVideo",
+    "_meta": {
+      "title": "创建视频"
+    }
+  },
+  "61": {
+    "inputs": {
+      "filename_prefix": "WanVideo2_2_I2V_Lightning-RAZRAI.com",
+      "format": "mp4",
+      "codec": "h264",
+      "video": [
+        "60",
+        0
+      ]
+    },
+    "class_type": "SaveVideo",
+    "_meta": {
+      "title": "保存视频 | RAZRAI.com - AI Video Generation"
+    }
+  },
+  "67": {
+    "inputs": {
+      "lora_name": "Wan2.2-I2V-A14B-4steps-lora-rank64-Seko-V1/high_noise_model.safetensors",
+      "strength_model": 1.0000000000000002,
+      "model": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "68": {
+    "inputs": {
+      "lora_name": "Wan2.2-I2V-A14B-4steps-lora-rank64-Seko-V1/low_noise_model.safetensors",
+      "strength_model": 1.0000000000000002,
+      "model": [
+        "56",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "71": {
+    "inputs": {
+      "image": "一个中国小女孩，大约8-10岁，腿很长，站在破旧的楼梯上。她有着金色盘起的头发，上面点缀着珍珠和粉色小花，脸上带着甜美乖.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "73": {
+    "inputs": {
+      "width": [
+        "87",
+        0
+      ],
+      "height": [
+        "91",
+        0
+      ],
+      "length": 81,
+      "batch_size": 1,
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "vae": [
+        "39",
+        0
+      ],
+      "start_image": [
+        "83",
+        0
+      ]
+    },
+    "class_type": "WanImageToVideo",
+    "_meta": {
+      "title": "图像到视频（Wan）"
+    }
+  },
+  "83": {
+    "inputs": {
+      "width": 1280,
+      "height": 1280,
+      "interpolation": "lanczos",
+      "method": "keep proportion",
+      "condition": "downscale if bigger",
+      "multiple_of": 0,
+      "image": [
+        "71",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "84": {
+    "inputs": {
+      "op": "Add",
+      "a": [
+        "83",
+        1
+      ],
+      "b": 8
+    },
+    "class_type": "CM_IntBinaryOperation",
+    "_meta": {
+      "title": "IntBinaryOperation"
+    }
+  },
+  "85": {
+    "inputs": {
+      "op": "Div",
+      "a": [
+        "84",
+        0
+      ],
+      "b": 16
+    },
+    "class_type": "CM_IntBinaryOperation",
+    "_meta": {
+      "title": "IntBinaryOperation"
+    }
+  },
+  "86": {
+    "inputs": {
+      "op": "Mul",
+      "a": [
+        "85",
+        0
+      ],
+      "b": 16
+    },
+    "class_type": "CM_IntBinaryOperation",
+    "_meta": {
+      "title": "IntBinaryOperation"
+    }
+  },
+  "87": {
+    "inputs": {
+      "op": "Max",
+      "a": [
+        "86",
+        0
+      ],
+      "b": 16
+    },
+    "class_type": "CM_IntBinaryOperation",
+    "_meta": {
+      "title": "IntBinaryOperation"
+    }
+  },
+  "88": {
+    "inputs": {
+      "op": "Add",
+      "a": [
+        "83",
+        2
+      ],
+      "b": 8
+    },
+    "class_type": "CM_IntBinaryOperation",
+    "_meta": {
+      "title": "IntBinaryOperation"
+    }
+  },
+  "89": {
+    "inputs": {
+      "op": "Div",
+      "a": [
+        "88",
+        0
+      ],
+      "b": 16
+    },
+    "class_type": "CM_IntBinaryOperation",
+    "_meta": {
+      "title": "IntBinaryOperation"
+    }
+  },
+  "90": {
+    "inputs": {
+      "op": "Mul",
+      "a": [
+        "89",
+        0
+      ],
+      "b": 16
+    },
+    "class_type": "CM_IntBinaryOperation",
+    "_meta": {
+      "title": "IntBinaryOperation"
+    }
+  },
+  "91": {
+    "inputs": {
+      "op": "Max",
+      "a": [
+        "90",
+        0
+      ],
+      "b": 16
+    },
+    "class_type": "CM_IntBinaryOperation",
+    "_meta": {
+      "title": "IntBinaryOperation"
+    }
+  }
+}
